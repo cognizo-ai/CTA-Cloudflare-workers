@@ -86,7 +86,7 @@ node_modules/
 !.env.example
 
 # Cloudflare Workers specific
-wrangler.toml
+#wrangler.toml
 !wrangler.toml.example
 
 # Rust specific ignores
