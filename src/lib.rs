@@ -65,10 +65,12 @@ async fn track_visit(req: Request, env: Env) -> Result<()> {
             .or_else(|| headers.get("X-Real-IP").ok().flatten())
             .unwrap_or_else(|| "Unknown".to_string()),
         "url": url.to_string(),
+        "referer": headers.get("Referer").ok().flatten(),
         "country": headers.get("CF-IPCountry").ok().flatten(),
         "cf_ray": headers.get("CF-Ray").ok().flatten(),
         "method": req.method().to_string(),
-        "timestamp": timestamp
+        "timestamp": timestamp,
+        "source": "worker"
     });
     
     let json_body = serde_json::to_string(&payload).unwrap_or_default();
